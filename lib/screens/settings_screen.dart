@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingScreen extends StatelessWidget {
   SettingScreen({super.key});
@@ -50,9 +51,21 @@ class SettingScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-            const UserData(iconConfig: Icon(Icons.add_business), route: '/my_adds', textConfig: 'My ads',),
-            const UserData(iconConfig: Icon(Icons.person), route: 'pending', textConfig: 'About us',),
-            const UserData(iconConfig: Icon(Icons.contacts), route: 'pending', textConfig: 'Contact us',),
+            const UserData(
+              iconConfig: Icon(Icons.add_business),
+              route: '/my_adds',
+              textConfig: 'My ads',
+            ),
+            const UserData(
+              iconConfig: Icon(Icons.person),
+              link: 'https://appmaking.com/about/',
+              textConfig: 'About us',
+            ),
+            const UserData(
+              iconConfig: Icon(Icons.contacts),
+              link: 'https://appmaking.com/contact/',
+              textConfig: 'Contact us',
+            ),
           ],
         ),
       ),
@@ -61,24 +74,52 @@ class SettingScreen extends StatelessWidget {
 }
 
 class UserData extends StatelessWidget {
-  const UserData({super.key, required this.iconConfig, required this.route, required this.textConfig});
+  const UserData(
+      {
+        super.key,
+        required this.iconConfig,
+        this.route,
+        this.link,
+        required this.textConfig
+      });
 
   final Icon iconConfig;
-  final String route;
+  final String? route;
+  final String? link;
   final String textConfig;
+
+  _openURL(url) async {
+    url = Uri.parse(url);
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      print("Error");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    String router = route ?? '';
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         iconConfig,
         const SizedBox(width: 20),
-        TextButton(onPressed: () {
-          Navigator.pushNamed(context, route);
+        TextButton(onPressed: (){
+          if (router != '') {
+            Navigator.pushNamed(context, router);
+          }
+          if(link != null) {
+            _openURL(link);
+          }
         }, child: Text(textConfig))
       ],
     );
   }
+
+
 
 }

@@ -37,11 +37,5 @@ class RouteGenerator {
       case '/edit_add':
         return MaterialPageRoute(builder: (context) => EditAd(data: args));
     }
-    /*
-        switch(routeName) {
-          case '/home':
-            return MaterialPageRoute(builder: (context) => const LoginScreen(title: 'Login', data: args));
-        }
-        */
   });
 }

@@ -73,6 +73,7 @@ class ProductCard extends StatelessWidget {
           'createdBy': ads[product]['createdBy'],
           'createdAt': ads[product]['createdAt'],
           'description': ads[product]['description'],
+          'mobile': ads[product]['mobile'],
         });
       },
       child: Expanded(
