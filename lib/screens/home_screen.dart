@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:classified_app/data/data_products.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-
-  List products = <Map>[
-    {
-      "name": 'Switch',
-      "price": 500,
-      "img": 'assets/images/products/switch.jpg'
-    }
-  ];
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +29,15 @@ class HomeScreen extends StatelessWidget {
             crossAxisSpacing: 2,
             mainAxisSpacing: 2,
           ),
-          itemCount: products.length,
+          itemCount: ads.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: ProductCard(
-                name: products[index]['name'],
-                price: products[index]['price'],
-                img: products[index]['img']
+                  product: index,
+                  name: ads[index]['title'],
+                  price: ads[index]['price'],
+                  img: ads[index]['images'][0]
               ),
             );
           },
@@ -61,8 +55,9 @@ class HomeScreen extends StatelessWidget {
 }
 
 class ProductCard extends StatelessWidget {
-  ProductCard({super.key, required this.name, required this.price, required this.img});
+  ProductCard({super.key, required this.product, required this.name, required this.price, required this.img});
 
+  final int product;
   final String name;
   final int price;
   final String img;
@@ -73,12 +68,19 @@ class ProductCard extends StatelessWidget {
       color: Colors.pink,
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, '/product_details');
+          Navigator.pushNamed(context, '/product_details', arguments: {
+            'title': ads[product]['title'],
+            'price': ads[product]['price'],
+            'images': ads[product]['images'],
+            'createdBy': ads[product]['createdBy'],
+            'createdAt': ads[product]['createdAt'],
+            'description': ads[product]['description'],
+          });
         },
         child: Expanded(
           child: Stack(
             children: [
-              Image.asset(
+              Image.network(
                 img,
                 height: double.infinity,
                 fit: BoxFit.fitHeight,

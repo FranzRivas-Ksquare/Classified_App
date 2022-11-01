@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-class ProductDetail extends StatelessWidget {
-  const ProductDetail({super.key});
+class ProductDetail extends StatefulWidget {
+  ProductDetail({super.key, required this.data});
 
+  dynamic data;
+
+  @override
+  State<ProductDetail> createState() => _ProductDetailState();
+}
+
+class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,28 +21,30 @@ class ProductDetail extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text('Here would be the name of the product'),
-            const Text('Here would be the name of the price'),
+            Text(widget.data['title']),
+            Text('\$${widget.data['price']}'),
             const SizedBox(height: 15),
             GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/image_viewer');
+                  Navigator.pushNamed(context, '/image_viewer', arguments: {
+                    'images': widget.data['images']
+                  });
                 },
-                child: Image.asset('assets/images/products/switch.jpg')),
+                child: Image.network(widget.data['images'][0])),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
               child: Row(
-                children: const <Widget>[
-                  Icon(Icons.person),
-                  Text('Ali'),
-                  SizedBox(width: 20),
-                  Icon(Icons.timelapse),
-                  Text('14 days ago'),
+                children: <Widget>[
+                  const Icon(Icons.person),
+                  Text(widget.data['createdBy']),
+                  const SizedBox(width: 20),
+                  const Icon(Icons.timelapse),
+                  Text(widget.data['createdAt']),
                 ],
               ),
             ),
-            Text('Descriptcion'),
-            Expanded(child: SizedBox()),
+            Text(widget.data['description']),
+            const Expanded(child: SizedBox()),
             Container(
               width: double.infinity,
               height: 45,
