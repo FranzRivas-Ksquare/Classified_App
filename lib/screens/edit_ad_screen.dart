@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 
-class EditAd extends StatelessWidget {
-  EditAd({super.key});
+class EditAd extends StatefulWidget {
+  EditAd({super.key, required this.data});
 
+  dynamic data;
+
+  @override
+  State<EditAd> createState() => _EditAdState();
+}
+
+class _EditAdState extends State<EditAd> {
   @override
   Widget build(BuildContext context) {
 
     var _formKey = GlobalKey<FormState>();
 
-    TextEditingController _titleCtrl = TextEditingController();
-    TextEditingController _priceCtrl = TextEditingController();
-    TextEditingController _cellphoneCtrl = TextEditingController();
-    TextEditingController _descriptionCtrl = TextEditingController();
+    TextEditingController _titleCtrl = TextEditingController(text: widget.data['title']);
+    TextEditingController _priceCtrl = TextEditingController(text: '${widget.data['price']}');
+    TextEditingController _cellphoneCtrl = TextEditingController(text: widget.data['mobile']);
+    TextEditingController _descriptionCtrl = TextEditingController(text: widget.data['description']);
 
     return Scaffold(
       appBar: AppBar(
@@ -107,5 +114,4 @@ class EditAd extends StatelessWidget {
       ),
     );
   }
-
 }

@@ -30,7 +30,13 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/edit_add');
+        Navigator.pushNamed(context, '/edit_add', arguments: {
+          'images': ads[product]['images'],
+          'title': ads[product]['title'],
+          'price': ads[product]['price'],
+          'mobile': ads[product]['mobile'],
+          'description': ads[product]['description'],
+        });
       },
       child: Container(
         padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
