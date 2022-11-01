@@ -12,34 +12,35 @@ class SettingScreen extends StatelessWidget {
         title: const Text('Settings'),
       ),
       body: Container(
-        margin: const EdgeInsets.all(13),
+        margin: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const CircleAvatar(
                   backgroundImage: AssetImage('assets/images/avatar_morty.jpg'),
                 ),
-                Container(
-                  color: Colors.pink,
+                const SizedBox(width: 17),
+                SizedBox(
                   height: 50,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const <Widget>[
-                        Text('Here would be the name'), // TODO: Grab name
-                        Text('Here would be the cellphone'),
+                        Text('Evil Morty'),
+                        Text('999-999-9999'),
                       ],
                     ),
                   ),
                 ),
+                const Expanded(child: SizedBox(),),
                 TextButton(onPressed: () {
                   Navigator.pushNamed(context, '/edit_profile');
                 }, child: const Text('Edit'))
               ],
             ),
+            const SizedBox(height: 20),
             const UserData(iconConfig: Icon(Icons.add_business), route: '/my_adds', textConfig: 'My ads',),
             const UserData(iconConfig: Icon(Icons.person), route: 'pending', textConfig: 'About us',),
             const UserData(iconConfig: Icon(Icons.contacts), route: 'pending', textConfig: 'Contact us',),
