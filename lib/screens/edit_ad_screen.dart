@@ -43,6 +43,17 @@ class _EditAdState extends State<EditAd> {
                 ),
               ),
             ),
+            SizedBox(
+              width: double.infinity,
+              height: 90,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.data['images'].length,
+                itemBuilder: ((context, index) {
+                  return ImgSelect(img: widget.data['images'][index],);
+                }),
+              ),
+            ),
             Container(
               margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
               child: TextFormField(
@@ -114,4 +125,26 @@ class _EditAdState extends State<EditAd> {
       ),
     );
   }
+}
+
+
+class ImgSelect extends StatelessWidget {
+  const ImgSelect({super.key, required this.img});
+
+  final String img;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 80,
+      height: 80,
+      padding: const EdgeInsets.all(5),
+      margin: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.blueAccent)
+      ),
+      child: Image.network(img, height: double.infinity, fit: BoxFit.fitHeight,),
+    );
+  }
+
 }
