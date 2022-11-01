@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:classified_app/screens/login_screen.dart';
 
 class EditProfile extends StatelessWidget {
-  const EditProfile({super.key, required this.title});
-
-  final String title;
+  const EditProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,52 +15,84 @@ class EditProfile extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: const Text('Edit Profile'),
       ),
-      body: Column(
-        children: <Widget>[
-          const CircleAvatar(
-            backgroundImage: AssetImage('assets/images/avatar_morty.jpg'),
-          ),
-          Form(
-            key: _formKey,
-            child: Column(
-              children: <Widget>[
-                TextFormField(
-                  controller: _nameCtrl,
-                  validator: (value) {
-                    if(value!.isEmpty) {
-                      return 'This is required';
-                    }
-                  },
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Name',
-                      prefixIcon: Icon(Icons.account_box, color: Colors.white,)
-                  ),
-                ),
-                TextFormField(
-                  controller: _mailCtrl,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'eMail',
-                      prefixIcon: Icon(Icons.email, color: Colors.white,)
-                  ),
-                ),
-                TextFormField(
-                  controller: _cellphoneCtrl,
-                  keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Cellphone',
-                      prefixIcon: Icon(Icons.phone, color: Colors.white,)
-                  ),
-                )
-              ],
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: <Widget>[
+            const CircleAvatar(
+              radius: 60,
+              backgroundImage: AssetImage('assets/images/avatar_morty.jpg'),
             ),
-          )
-        ],
+            const SizedBox(height: 20),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                    child: TextFormField(
+                      controller: _nameCtrl,
+                      validator: (value) {
+                        if(value!.isEmpty) {
+                          return 'This is required';
+                        }
+                      },
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Name',
+                          prefixIcon: Icon(Icons.account_box, color: Colors.white,)
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                    child: TextFormField(
+                      controller: _mailCtrl,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'eMail',
+                          prefixIcon: Icon(Icons.email, color: Colors.white,)
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                    child: TextFormField(
+                      controller: _cellphoneCtrl,
+                      keyboardType: TextInputType.phone,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Cellphone',
+                          prefixIcon: Icon(Icons.phone, color: Colors.white,)
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 50,
+                    margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context, '/settings');
+                      },
+                      child: const Text('Update Profile'),
+                    ),
+                  ),
+                  TextButton(onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const LoginScreen()));
+                  },
+                    child: const Text('Logout'),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
