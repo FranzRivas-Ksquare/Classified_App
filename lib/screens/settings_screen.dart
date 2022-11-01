@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SettingScreen extends StatelessWidget {
-  const SettingScreen({super.key});
+  SettingScreen({super.key});
+
+  Map user = {
+    'name': 'Evil Morty',
+    'email': 'evil_morty@adultswim.com',
+    'cellphone': '+1526966966969',
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -20,21 +26,26 @@ class SettingScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: 17),
                 SizedBox(
-                  height: 50,
+                  height: 60,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
-                        Text('Evil Morty'),
-                        Text('999-999-9999'),
+                      children: <Widget>[
+                        Text(user['name']),
+                        const SizedBox(height: 5,),
+                        Text(user['cellphone']),
                       ],
                     ),
                   ),
                 ),
                 const Expanded(child: SizedBox(),),
                 TextButton(onPressed: () {
-                  Navigator.pushNamed(context, '/edit_profile');
+                  Navigator.pushNamed(context, '/edit_profile', arguments: {
+                    'name': user['name'],
+                    'email': user['email'],
+                    'cellphone': user['cellphone'],
+                  });
                 }, child: const Text('Edit'))
               ],
             ),

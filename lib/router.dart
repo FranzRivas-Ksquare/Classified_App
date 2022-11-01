@@ -23,7 +23,7 @@ class RouteGenerator {
       case '/home':
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       case '/settings':
-        return MaterialPageRoute(builder: (context) => const SettingScreen());
+        return MaterialPageRoute(builder: (context) => SettingScreen());
       case '/product_details':
         return MaterialPageRoute(builder: (context) => ProductDetail(data: args));
       case '/image_viewer':
@@ -31,7 +31,7 @@ class RouteGenerator {
       case '/create_add':
         return MaterialPageRoute(builder: (context) => const CreateAd());
       case '/edit_profile':
-        return MaterialPageRoute(builder: (context) => const EditProfile());
+        return MaterialPageRoute(builder: (context) => EditProfile(data: args));
       case '/my_adds':
         return MaterialPageRoute(builder: (context) => const MyAdds());
       case '/edit_add':

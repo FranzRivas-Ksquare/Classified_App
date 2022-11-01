@@ -64,49 +64,46 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.pink,
-      child: GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(context, '/product_details', arguments: {
-            'title': ads[product]['title'],
-            'price': ads[product]['price'],
-            'images': ads[product]['images'],
-            'createdBy': ads[product]['createdBy'],
-            'createdAt': ads[product]['createdAt'],
-            'description': ads[product]['description'],
-          });
-        },
-        child: Expanded(
-          child: Stack(
-            children: [
-              Image.network(
-                img,
-                height: double.infinity,
-                fit: BoxFit.fitHeight,
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: double.infinity,
-                  height: 45,
-                  color: const Color(0x77000000),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(name),
-                        const SizedBox(height: 5),
-                        Text('\$$price')
-                      ],
-                    ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/product_details', arguments: {
+          'title': ads[product]['title'],
+          'price': ads[product]['price'],
+          'images': ads[product]['images'],
+          'createdBy': ads[product]['createdBy'],
+          'createdAt': ads[product]['createdAt'],
+          'description': ads[product]['description'],
+        });
+      },
+      child: Expanded(
+        child: Stack(
+          children: [
+            Image.network(
+              img,
+              height: double.infinity,
+              fit: BoxFit.fitHeight,
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: double.infinity,
+                height: 45,
+                color: const Color(0x77000000),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(name),
+                      const SizedBox(height: 5),
+                      Text('\$$price')
+                    ],
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

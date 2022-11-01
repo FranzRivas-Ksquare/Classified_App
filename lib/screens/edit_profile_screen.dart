@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
-class EditProfile extends StatelessWidget {
-  const EditProfile({super.key});
+class EditProfile extends StatefulWidget {
+  EditProfile({super.key, required this.data});
 
+  dynamic data;
+
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
 
     var _formKey = GlobalKey<FormState>();
 
-    TextEditingController _nameCtrl = TextEditingController();
-    TextEditingController _mailCtrl = TextEditingController();
-    TextEditingController _cellphoneCtrl = TextEditingController();
+    TextEditingController _nameCtrl = TextEditingController(text: widget.data['name']);
+    TextEditingController _mailCtrl = TextEditingController(text: widget.data['email']);
+    TextEditingController _cellphoneCtrl = TextEditingController(text: widget.data['cellphone']);
 
     return Scaffold(
       appBar: AppBar(
@@ -95,5 +102,4 @@ class EditProfile extends StatelessWidget {
       ),
     );
   }
-
 }
