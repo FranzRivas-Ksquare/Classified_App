@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:classified_app/data/data_products.dart';
 
 class MyAdds extends StatelessWidget {
   const MyAdds({super.key});
@@ -10,9 +11,9 @@ class MyAdds extends StatelessWidget {
         title: const Text('My Adds'),
       ),
       body: ListView.builder(
-          itemCount: 10,
+          itemCount: ads.length,
           itemBuilder: ((context, index) {
-            return const ProductCard();
+            return ProductCard(product: index);
           })
       ),
     );
@@ -21,7 +22,9 @@ class MyAdds extends StatelessWidget {
 }
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  const ProductCard({super.key, required this.product});
+
+  final int product;
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +46,8 @@ class ProductCard extends StatelessWidget {
               SizedBox(
                   width: 90,
                   height: 100,
-                  child: Image.asset(
-                      'assets/images/products/switch.jpg',
+                  child: Image.network(
+                      ads[product]['images'][0],
                       height: double.infinity,
                       fit: BoxFit.fitHeight),
               ),
@@ -53,10 +56,11 @@ class ProductCard extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
-                    Text('Switch for Sale'),
-                    Text('18 days ago'),
-                    Text('\$500'),
+                  children: <Widget>[
+                    Text(ads[product]['title']),
+                    Text(ads[product]['createdAt']),
+                    Text('\$${ads[product]['price']}'),
+
                   ],
                 ),
               ),

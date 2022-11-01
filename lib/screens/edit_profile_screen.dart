@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:classified_app/screens/login_screen.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({super.key});
@@ -82,9 +81,9 @@ class EditProfile extends StatelessWidget {
                     ),
                   ),
                   TextButton(onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const LoginScreen()));
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    Navigator.pushReplacementNamed(context, '/');
                   },
                     child: const Text('Logout'),
                   ),

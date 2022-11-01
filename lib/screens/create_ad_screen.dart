@@ -97,7 +97,7 @@ class CreateAd extends StatelessWidget {
               margin: const EdgeInsets.all(10),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context, '/home');
+                  Navigator.pop(context);
                 },
                 child: const Text('Submit Add'),
               ),

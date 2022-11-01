@@ -35,7 +35,7 @@ class RouteGenerator {
       case '/my_adds':
         return MaterialPageRoute(builder: (context) => const MyAdds());
       case '/edit_add':
-        return MaterialPageRoute(builder: (context) => EditAd(data: args));
+        return MaterialPageRoute(builder: (context) => EditAd());
     }
     /*
         switch(routeName) {

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class EditAd extends StatelessWidget {
-  EditAd({super.key, required this.data});
-
-  final List <Map>data;
+  EditAd({super.key});
 
   @override
   Widget build(BuildContext context) {
