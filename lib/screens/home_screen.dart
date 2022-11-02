@@ -44,6 +44,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurpleAccent,
         onPressed: () {
           Navigator.pushNamed(context, '/create_add');
         },
@@ -88,7 +89,7 @@ class ProductCard extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Container(
                 width: double.infinity,
-                height: 45,
+                height: 50,
                 color: const Color(0x77000000),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -96,9 +97,9 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(name),
+                      Text(name, style: TextStyle(fontSize: 13, color: Colors.white),),
                       const SizedBox(height: 5),
-                      Text('\$$price')
+                      Text('\$$price', style: TextStyle(fontSize: 11, color: Colors.white),)
                     ],
                   ),
                 ),

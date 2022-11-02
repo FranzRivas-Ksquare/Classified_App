@@ -52,7 +52,7 @@ class RegisterScreen extends StatelessWidget {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Name',
-                            prefixIcon: Icon(Icons.account_box, color: Colors.white,)
+                            prefixIcon: Icon(Icons.account_box, color: Colors.deepPurple,)
                         ),
                       ),
                     ),
@@ -64,7 +64,7 @@ class RegisterScreen extends StatelessWidget {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'eMail',
-                            prefixIcon: Icon(Icons.email, color: Colors.white,)
+                            prefixIcon: Icon(Icons.email, color: Colors.deepPurple,)
                         ),
                       ),
                     ),
@@ -76,7 +76,7 @@ class RegisterScreen extends StatelessWidget {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Cellphone',
-                            prefixIcon: Icon(Icons.phone, color: Colors.white,)
+                            prefixIcon: Icon(Icons.phone, color: Colors.deepPurple,)
                         ),
                       ),
                     ),
@@ -96,7 +96,7 @@ class RegisterScreen extends StatelessWidget {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Password',
-                            prefixIcon: Icon(Icons.password, color: Colors.white,)
+                            prefixIcon: Icon(Icons.password, color: Colors.deepPurple,)
                         ),
                       ),
                     ),
@@ -105,6 +105,7 @@ class RegisterScreen extends StatelessWidget {
                       height: 50,
                       margin: const EdgeInsets.all(10),
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurpleAccent),
                         onPressed: () {
                           Navigator.pop(context, '/login');
                           Navigator.pushReplacementNamed(context, '/home');
@@ -115,7 +116,7 @@ class RegisterScreen extends StatelessWidget {
                     TextButton(onPressed: () {
                       Navigator.pop(context, '/login');
                     },
-                      child: const Text('Already have an account?'),
+                      child: const Text('Already have an account?', style: TextStyle(color: Colors.deepPurpleAccent),),
                     ),
                   ],
                 ),

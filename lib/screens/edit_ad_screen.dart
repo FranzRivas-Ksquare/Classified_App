@@ -37,8 +37,12 @@ class _EditAdState extends State<EditAd> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const <Widget>[
-                    Icon(Icons.photo_camera),
-                    Text('Upload Photo', textAlign: TextAlign.center,)
+                    Icon(Icons.photo_camera, color: Colors.deepPurpleAccent,),
+                    Text(
+                      'Upload Photo',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.deepPurpleAccent),
+                    ),
                   ],
                 ),
               ),
@@ -66,7 +70,7 @@ class _EditAdState extends State<EditAd> {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Title',
-                    prefixIcon: Icon(Icons.title, color: Colors.white,)
+                    prefixIcon: Icon(Icons.title, color: Colors.deepPurpleAccent,)
                 ),
               ),
             ),
@@ -82,7 +86,7 @@ class _EditAdState extends State<EditAd> {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Price',
-                    prefixIcon: Icon(Icons.price_change, color: Colors.white,)
+                    prefixIcon: Icon(Icons.price_change, color: Colors.deepPurple,)
                 ),
               ),
             ),
@@ -94,7 +98,7 @@ class _EditAdState extends State<EditAd> {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Contact',
-                    prefixIcon: Icon(Icons.phone, color: Colors.white,)
+                    prefixIcon: Icon(Icons.phone, color: Colors.deepPurple,)
                 ),
               ),
             ),
@@ -105,7 +109,7 @@ class _EditAdState extends State<EditAd> {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Description',
-                    prefixIcon: Icon(Icons.description, color: Colors.white,)
+                    prefixIcon: Icon(Icons.description, color: Colors.deepPurple,)
                 ),
               ),
             ),
@@ -141,7 +145,7 @@ class ImgSelect extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.blueAccent)
+          border: Border.all(color: Colors.deepPurpleAccent)
       ),
       child: Image.network(img, height: double.infinity, fit: BoxFit.fitHeight,),
     );

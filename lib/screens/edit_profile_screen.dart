@@ -48,7 +48,7 @@ class _EditProfileState extends State<EditProfile> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Name',
-                          prefixIcon: Icon(Icons.account_box, color: Colors.white,)
+                          prefixIcon: Icon(Icons.account_box)
                       ),
                     ),
                   ),
@@ -60,7 +60,7 @@ class _EditProfileState extends State<EditProfile> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'eMail',
-                          prefixIcon: Icon(Icons.email, color: Colors.white,)
+                          prefixIcon: Icon(Icons.email)
                       ),
                     ),
                   ),
@@ -72,7 +72,7 @@ class _EditProfileState extends State<EditProfile> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Cellphone',
-                          prefixIcon: Icon(Icons.phone, color: Colors.white,)
+                          prefixIcon: Icon(Icons.phone)
                       ),
                     ),
                   ),
@@ -81,6 +81,7 @@ class _EditProfileState extends State<EditProfile> {
                     height: 50,
                     margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurpleAccent),
                       onPressed: () {
                         Navigator.pop(context, '/settings');
                       },
@@ -92,7 +93,7 @@ class _EditProfileState extends State<EditProfile> {
                     Navigator.pop(context);
                     Navigator.pushReplacementNamed(context, '/');
                   },
-                    child: const Text('Logout'),
+                    child: const Text('Logout', style: TextStyle(color: Colors.deepPurpleAccent),),
                   ),
                 ],
               ),

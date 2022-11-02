@@ -33,7 +33,7 @@ class _ProductDetailState extends State<ProductDetail> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(widget.data['title']),
+            Text(widget.data['title'], style: TextStyle(fontSize: 24),),
             Text('\$${widget.data['price']}'),
             const SizedBox(height: 15),
             GestureDetector(
@@ -61,6 +61,7 @@ class _ProductDetailState extends State<ProductDetail> {
               width: double.infinity,
               height: 45,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurpleAccent),
                   onPressed: () {
                     _openURL('tel:${widget.data['mobile']}');
                   },

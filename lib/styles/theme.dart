@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class CustomTheme {
   ThemeData theme = ThemeData(
-    // TODO: textTheme: ,
+    primaryColor: Colors.deepPurple,
+    fontFamily: 'Poppins',
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.deepPurpleAccent,
     ),

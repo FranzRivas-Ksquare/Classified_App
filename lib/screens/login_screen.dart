@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'eMail',
-                            prefixIcon: Icon(Icons.email, color: Colors.white,)
+                            prefixIcon: Icon(Icons.email, color: Colors.deepPurple,)
                         ),
                       ),
                     ),
@@ -66,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Password',
-                            prefixIcon: Icon(Icons.password, color: Colors.white,)
+                            prefixIcon: Icon(Icons.password, color: Colors.deepPurple,)
                         ),
                       ),
                     ),
@@ -75,6 +75,7 @@ class LoginScreen extends StatelessWidget {
                       height: 50,
                       margin: const EdgeInsets.all(10),
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurpleAccent),
                           onPressed: () {
                             Navigator.pushReplacementNamed(context, '/home');
                           },
@@ -84,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                     TextButton(onPressed: () {
                       Navigator.pushNamed(context, '/register');
                     },
-                        child: const Text('Don\'t have any account?'),
+                        child: const Text('Don\'t have any account?', style: TextStyle(color: Colors.deepPurpleAccent),),
                     ),
                   ],
                 ),

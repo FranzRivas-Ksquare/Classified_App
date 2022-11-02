@@ -23,6 +23,7 @@ class SettingScreen extends StatelessWidget {
             Row(
               children: [
                 const CircleAvatar(
+                  radius: 30,
                   backgroundImage: AssetImage('assets/images/avatar_morty.jpg'),
                 ),
                 const SizedBox(width: 17),
@@ -33,9 +34,9 @@ class SettingScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(user['name']),
+                        Text(user['name'], style: TextStyle(fontSize: 15),),
                         const SizedBox(height: 5,),
-                        Text(user['cellphone']),
+                        Text(user['cellphone'], style: TextStyle(fontSize: 10),),
                       ],
                     ),
                   ),
@@ -47,22 +48,22 @@ class SettingScreen extends StatelessWidget {
                     'email': user['email'],
                     'cellphone': user['cellphone'],
                   });
-                }, child: const Text('Edit'))
+                }, child: const Text('Edit', style: TextStyle(color: Colors.deepPurpleAccent),))
               ],
             ),
             const SizedBox(height: 20),
             const UserData(
-              iconConfig: Icon(Icons.add_business),
+              iconConfig: Icon(Icons.add_business, color: Colors.deepPurple,),
               route: '/my_adds',
               textConfig: 'My ads',
             ),
             const UserData(
-              iconConfig: Icon(Icons.person),
+              iconConfig: Icon(Icons.person, color: Colors.deepPurple,),
               link: 'https://appmaking.com/about/',
               textConfig: 'About us',
             ),
             const UserData(
-              iconConfig: Icon(Icons.contacts),
+              iconConfig: Icon(Icons.contacts, color: Colors.deepPurple,),
               link: 'https://appmaking.com/contact/',
               textConfig: 'Contact us',
             ),
@@ -115,7 +116,7 @@ class UserData extends StatelessWidget {
           if(link != null) {
             _openURL(link);
           }
-        }, child: Text(textConfig))
+        }, child: Text(textConfig, style: TextStyle(color: Colors.deepPurpleAccent),))
       ],
     );
   }

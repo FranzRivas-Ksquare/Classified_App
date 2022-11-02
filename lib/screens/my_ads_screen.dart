@@ -45,7 +45,7 @@ class ProductCard extends StatelessWidget {
           height: 100,
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
-              border: Border.all(color: Colors.blueAccent)
+              border: Border.all(color: Colors.deepPurpleAccent)
           ),
           child: Row(
             children: <Widget>[
@@ -58,14 +58,16 @@ class ProductCard extends StatelessWidget {
                       fit: BoxFit.fitHeight),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(ads[product]['title']),
-                    Text(ads[product]['createdAt']),
-                    Text('\$${ads[product]['price']}'),
+                    Text(ads[product]['title'], style: TextStyle(fontSize: 15),),
+                    const SizedBox(height: 1),
+                    Text(ads[product]['createdAt'], style: TextStyle(fontSize: 8),),
+                    const SizedBox(height: 7),
+                    Text('\$${ads[product]['price']}', style: TextStyle(fontSize: 11),),
 
                   ],
                 ),
