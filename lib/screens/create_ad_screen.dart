@@ -30,8 +30,12 @@ class CreateAd extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const <Widget>[
-                    Icon(Icons.photo_camera),
-                    Text('Upload Photo', textAlign: TextAlign.center,)
+                    Icon(Icons.photo_camera, color: Color(0xFFF25723),),
+                    Text(
+                      'Upload Photo',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Color(0xFFF25723)),
+                    ),
                   ],
                 ),
               ),
@@ -48,7 +52,7 @@ class CreateAd extends StatelessWidget {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Title',
-                    prefixIcon: Icon(Icons.title, color: Colors.white,)
+                    prefixIcon: Icon(Icons.title, color: Color(0xFFF25723),)
                 ),
               ),
             ),
@@ -64,7 +68,7 @@ class CreateAd extends StatelessWidget {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Price',
-                    prefixIcon: Icon(Icons.price_change, color: Colors.white,)
+                    prefixIcon: Icon(Icons.price_change, color: Color(0xFFF25723),)
                 ),
               ),
             ),
@@ -76,7 +80,7 @@ class CreateAd extends StatelessWidget {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Contact',
-                    prefixIcon: Icon(Icons.phone, color: Colors.white,)
+                    prefixIcon: Icon(Icons.phone, color: Color(0xFFF25723),)
                 ),
               ),
             ),
@@ -87,7 +91,7 @@ class CreateAd extends StatelessWidget {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Description',
-                    prefixIcon: Icon(Icons.description, color: Colors.white,)
+                    prefixIcon: Icon(Icons.description, color: Color(0xFFF25723),)
                 ),
               ),
             ),
@@ -96,6 +100,7 @@ class CreateAd extends StatelessWidget {
               height: 50,
               margin: const EdgeInsets.all(10),
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFF25723)),
                 onPressed: () {
                   Navigator.pop(context);
                 },

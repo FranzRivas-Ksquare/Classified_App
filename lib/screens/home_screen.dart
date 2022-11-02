@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.deepPurpleAccent,
+        backgroundColor: const Color(0xFFF25723),
         onPressed: () {
           Navigator.pushNamed(context, '/create_add');
         },

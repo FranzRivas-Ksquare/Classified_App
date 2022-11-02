@@ -45,7 +45,7 @@ class ProductCard extends StatelessWidget {
           height: 100,
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
-              border: Border.all(color: Colors.deepPurpleAccent)
+              border: Border.all(color: Color(0xFFF25723))
           ),
           child: Row(
             children: <Widget>[

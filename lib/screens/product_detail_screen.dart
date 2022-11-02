@@ -61,7 +61,7 @@ class _ProductDetailState extends State<ProductDetail> {
               width: double.infinity,
               height: 45,
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurpleAccent),
+                style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFF25723)),
                   onPressed: () {
                     _openURL('tel:${widget.data['mobile']}');
                   },

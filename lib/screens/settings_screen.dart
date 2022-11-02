@@ -48,22 +48,22 @@ class SettingScreen extends StatelessWidget {
                     'email': user['email'],
                     'cellphone': user['cellphone'],
                   });
-                }, child: const Text('Edit', style: TextStyle(color: Colors.deepPurpleAccent),))
+                }, child: const Text('Edit', style: TextStyle(color: Color(0xFFF25723)),))
               ],
             ),
             const SizedBox(height: 20),
             const UserData(
-              iconConfig: Icon(Icons.add_business, color: Colors.deepPurple,),
+              iconConfig: Icon(Icons.add_business, color: Color(0xFFF25723),),
               route: '/my_adds',
               textConfig: 'My ads',
             ),
             const UserData(
-              iconConfig: Icon(Icons.person, color: Colors.deepPurple,),
+              iconConfig: Icon(Icons.person, color: Color(0xFFF25723),),
               link: 'https://appmaking.com/about/',
               textConfig: 'About us',
             ),
             const UserData(
-              iconConfig: Icon(Icons.contacts, color: Colors.deepPurple,),
+              iconConfig: Icon(Icons.contacts, color: Color(0xFFF25723),),
               link: 'https://appmaking.com/contact/',
               textConfig: 'Contact us',
             ),
@@ -116,7 +116,7 @@ class UserData extends StatelessWidget {
           if(link != null) {
             _openURL(link);
           }
-        }, child: Text(textConfig, style: TextStyle(color: Colors.deepPurpleAccent),))
+        }, child: Text(textConfig, style: TextStyle(color: Color(0xFFF25723)),))
       ],
     );
   }
