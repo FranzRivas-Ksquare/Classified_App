@@ -105,6 +105,7 @@ class _EditAdState extends State<EditAd> {
             Container(
               margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
               child: TextFormField(
+                maxLines: 3,
                 controller: _descriptionCtrl,
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
