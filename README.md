@@ -5,7 +5,7 @@
 ## Screen Shots
 
 ### Login
-![screen_1](./screenshots/1.png)
+<img src="./screenshots/1.png" width=540 height=1170>
 
 ### Register
 ![screen_2](./screenshots/2.png)
