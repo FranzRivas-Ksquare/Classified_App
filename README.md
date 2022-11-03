@@ -1,7 +1,6 @@
 # Classified App
 
-![classified_app_AdobeExpress](https://user-images.githubusercontent.com/113386484/199617961-bb29df8c-bc39-4184-99e2-3a1ed2906b91.gif)
-<img src="https://user-images.githubusercontent.com/113386484/199617961-bb29df8c-bc39-4184-99e2-3a1ed2906b91.gif" width=270 height=585>
+<img src="https://user-images.githubusercontent.com/113386484/199617961-bb29df8c-bc39-4184-99e2-3a1ed2906b91.gif" width=216 height=468>
 
 ## Screen Shots
 
