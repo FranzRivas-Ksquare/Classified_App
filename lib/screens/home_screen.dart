@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:classified_app/data/data_products.dart';
+import 'package:classified_app/services/product_ad.services.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  AdService adsData = AdService();
 
   @override
   Widget build(BuildContext context) {

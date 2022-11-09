@@ -21,7 +21,7 @@ class RouteGenerator {
       case '/register':
         return MaterialPageRoute(builder: (context) => const RegisterScreen());
       case '/home':
-        return MaterialPageRoute(builder: (context) => const HomeScreen());
+        return MaterialPageRoute(builder: (context) => HomeScreen());
       case '/settings':
         return MaterialPageRoute(builder: (context) => SettingScreen());
       case '/product_details':
