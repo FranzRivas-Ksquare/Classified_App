@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:classified_app/model/product_ad.model.dart';
 import 'package:http/http.dart' as http;
-import 'constants.dart' as constants;
+import '../utils/constants.dart' as constants;
 
 class AdService {
   Future<List<ProductAd>> fetchUserData() async {

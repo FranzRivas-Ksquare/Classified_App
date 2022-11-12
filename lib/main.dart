@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:classified_app/router.dart';
-import 'package:classified_app/styles/theme.dart';
+import 'package:classified_app/utils/router.dart';
+import 'package:classified_app/utils/theme.dart';
 
 void main() {
   runApp(const MyApp());
