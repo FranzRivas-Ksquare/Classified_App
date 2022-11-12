@@ -1,1 +1,1 @@
-const String apiUrl = "https://adlisting.herokuapp.com/ads";
+const String apiUrl = "https://adlisting.herokuapp.com";

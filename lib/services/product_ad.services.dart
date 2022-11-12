@@ -6,7 +6,7 @@ import '../utils/constants.dart' as constants;
 
 class AdService {
   Future<List<ProductAd>> fetchAdsProducts() async {
-    var url = Uri.parse(constants.apiUrl);
+    var url = Uri.parse("${constants.apiUrl}/ads");
     List<ProductAd> productsAds = [];
     try {
       var res = await http.get(url);
@@ -17,7 +17,7 @@ class AdService {
           adsData.map<ProductAd>((products) => ProductAd.fromJson(products)).toList();
 
       if (kDebugMode) {
-        print("Error $productsAds");
+        print("$productsAds");
       }
 
       return productsAds;

@@ -56,7 +56,7 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title, style: TextStyle(fontSize: 13, color: Colors.white),),
+                      Text(title, style: TextStyle(fontSize: 12, color: Colors.white),),
                       const SizedBox(height: 5),
                       Text('\$$price', style: TextStyle(fontSize: 11, color: Colors.white),)
                     ],

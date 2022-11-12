@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:classified_app/model/user.model.dart';
+import 'package:classified_app/services/auth.service.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -8,8 +10,8 @@ class LoginScreen extends StatelessWidget {
 
     var _formKey = GlobalKey<FormState>();
 
-    TextEditingController _mailCtrl = TextEditingController();
-    TextEditingController _passwordCtrl = TextEditingController();
+    TextEditingController _emailCtrl = TextEditingController(text: "siniscotest@gmail.com");
+    TextEditingController _passwordCtrl = TextEditingController(text: "1234");
 
     return Scaffold(
       body: SafeArea(
@@ -41,8 +43,13 @@ class LoginScreen extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                       child: TextFormField(
-                        controller: _mailCtrl,
+                        controller: _emailCtrl,
                         keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if(value!.isEmpty) {
+                            return 'This is required';
+                          }
+                        },
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'eMail',
@@ -59,9 +66,6 @@ class LoginScreen extends StatelessWidget {
                           if(value!.isEmpty) {
                             return 'This is required';
                           }
-                          if (value.length < 10) {
-                            return 'Password need to more than 9 char';
-                          }
                         },
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
@@ -77,7 +81,14 @@ class LoginScreen extends StatelessWidget {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFF25723)),
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, '/home');
+                            if(_formKey.currentState!.validate()) {
+                              User user = User(
+                                email: _emailCtrl.text,
+                                password: _passwordCtrl.text,
+                              );
+                              AuthService().login(context, user);
+                              Navigator.pushReplacementNamed(context, '/home');
+                            }
                           },
                           child: const Text('Login'),
                       ),

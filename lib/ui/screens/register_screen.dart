@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:classified_app/model/user.model.dart';
+import 'package:classified_app/services/auth.service.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -9,7 +11,7 @@ class RegisterScreen extends StatelessWidget {
     var _formKey = GlobalKey<FormState>();
 
     TextEditingController _nameCtrl = TextEditingController();
-    TextEditingController _mailCtrl = TextEditingController();
+    TextEditingController _emailCtrl = TextEditingController();
     TextEditingController _cellphoneCtrl = TextEditingController();
     TextEditingController _passwordCtrl = TextEditingController();
 
@@ -59,8 +61,13 @@ class RegisterScreen extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                       child: TextFormField(
-                        controller: _mailCtrl,
+                        controller: _emailCtrl,
                         keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if(value!.isEmpty) {
+                            return 'This is required';
+                          }
+                        },
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'eMail',
@@ -73,6 +80,11 @@ class RegisterScreen extends StatelessWidget {
                       child: TextFormField(
                         controller: _cellphoneCtrl,
                         keyboardType: TextInputType.phone,
+                        validator: (value) {
+                          if(value!.isEmpty) {
+                            return 'This is required';
+                          }
+                        },
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Cellphone',
@@ -89,9 +101,6 @@ class RegisterScreen extends StatelessWidget {
                           if(value!.isEmpty) {
                             return 'This is required';
                           }
-                          if (value.length < 10) {
-                            return 'Password need to more than 9 char';
-                          }
                         },
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
@@ -107,8 +116,19 @@ class RegisterScreen extends StatelessWidget {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFF25723)),
                         onPressed: () {
-                          Navigator.pop(context, '/login');
-                          Navigator.pushReplacementNamed(context, '/home');
+                          if(_formKey.currentState!.validate()) {
+                            User user = User(
+                              name: _nameCtrl.text,
+                              email: _emailCtrl.text,
+                              mobile: _cellphoneCtrl.text,
+                              password: _passwordCtrl.text,
+                            );
+
+                            AuthService().register(user);
+
+                            Navigator.pop(context, '/login');
+                            Navigator.pushReplacementNamed(context, '/home');
+                          }
                         },
                         child: const Text('Register Now'),
                       ),
