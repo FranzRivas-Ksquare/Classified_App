@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:classified_app/ui/components/setting_info.dart';
 
 class SettingScreen extends StatelessWidget {
   SettingScreen({super.key});
@@ -52,17 +52,17 @@ class SettingScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-            const UserData(
+            const SettingInfo(
               iconConfig: Icon(Icons.add_business, color: Color(0xFFF25723),),
               route: '/my_adds',
               textConfig: 'My ads',
             ),
-            const UserData(
+            const SettingInfo(
               iconConfig: Icon(Icons.person, color: Color(0xFFF25723),),
               link: 'https://appmaking.com/about/',
               textConfig: 'About us',
             ),
-            const UserData(
+            const SettingInfo(
               iconConfig: Icon(Icons.contacts, color: Color(0xFFF25723),),
               link: 'https://appmaking.com/contact/',
               textConfig: 'Contact us',
@@ -72,55 +72,4 @@ class SettingScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class UserData extends StatelessWidget {
-  const UserData(
-      {
-        super.key,
-        required this.iconConfig,
-        this.route,
-        this.link,
-        required this.textConfig
-      });
-
-  final Icon iconConfig;
-  final String? route;
-  final String? link;
-  final String textConfig;
-
-  _openURL(url) async {
-    url = Uri.parse(url);
-
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
-      print("Error");
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    String router = route ?? '';
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        iconConfig,
-        const SizedBox(width: 20),
-        TextButton(onPressed: (){
-          if (router != '') {
-            Navigator.pushNamed(context, router);
-          }
-          if(link != null) {
-            _openURL(link);
-          }
-        }, child: Text(textConfig, style: TextStyle(color: Color(0xFFF25723)),))
-      ],
-    );
-  }
-
-
-
 }
