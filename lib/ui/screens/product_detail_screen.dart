@@ -39,16 +39,16 @@ class _ProductDetailState extends State<ProductDetail> {
             GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, '/image_viewer', arguments: {
-                    'images': widget.data['images']
+                    'images': widget.data['image']
                   });
                 },
-                child: Image.network(widget.data['images'][0])),
+                child: Image.network(widget.data['image'])),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
               child: Row(
                 children: <Widget>[
                   const Icon(Icons.person),
-                  Text(widget.data['createdBy']),
+                  Text(widget.data['authorName']),
                   const SizedBox(width: 20),
                   const Icon(Icons.timelapse),
                   Text(widget.data['createdAt']),
