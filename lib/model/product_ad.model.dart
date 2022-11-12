@@ -27,7 +27,7 @@ class ProductAd {
     title = json['title'];
     description = json['description'];
     price = json['price'];
-    images = json['images'].cast<String>();
+    images = json["images"] == null? [] : List<String>.from(json["images"].map((x) => x));
     authorName = json['authorName'];
     userId = json['userId'];
     mobile = json['mobile'];
@@ -36,17 +36,17 @@ class ProductAd {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['price'] = this.price;
-    data['images'] = this.images;
-    data['authorName'] = this.authorName;
-    data['userId'] = this.userId;
-    data['mobile'] = this.mobile;
-    data['createdAt'] = this.createdAt;
-    data['__v'] = this.iV;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['title'] = title;
+    data['description'] = description;
+    data['price'] = price;
+    data['images'] = images;
+    data['authorName'] = authorName;
+    data['userId'] = userId;
+    data['mobile'] = mobile;
+    data['createdAt'] = createdAt;
+    data['__v'] = iV;
     return data;
   }
 }
