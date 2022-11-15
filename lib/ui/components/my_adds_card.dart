@@ -1,21 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:classified_app/data/data_products.dart';
 
 class MyAdCard extends StatelessWidget {
-  const MyAdCard({super.key, required this.product});
+  const MyAdCard({
+    super.key,
+    required this.product,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.image,
+    required this.mobile,
+    required this.createdAt,
+  });
 
   final int product;
+  final String title;
+  final String description;
+  final int price;
+  final String image;
+  final String mobile;
+  final String createdAt;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, '/edit_add', arguments: {
-          'images': ads[product]['images'],
-          'title': ads[product]['title'],
-          'price': ads[product]['price'],
-          'mobile': ads[product]['mobile'],
-          'description': ads[product]['description'],
+          'images': image,
+          'title': title,
+          'price': price,
+          'mobile': mobile,
+          'description': description,
         });
       },
       child: Container(
@@ -33,7 +47,7 @@ class MyAdCard extends StatelessWidget {
                     width: 90,
                     height: 100,
                     child: Image.network(
-                        ads[product]['images'][0],
+                        image,
                         height: double.infinity,
                         fit: BoxFit.fitHeight),
                   ),
@@ -43,11 +57,11 @@ class MyAdCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(ads[product]['title'], style: TextStyle(fontSize: 15),),
+                        Text(title, style: TextStyle(fontSize: 15),),
                         const SizedBox(height: 1),
-                        Text(ads[product]['createdAt'], style: TextStyle(fontSize: 8),),
+                        Text(createdAt, style: TextStyle(fontSize: 8),),
                         const SizedBox(height: 7),
-                        Text('\$${ads[product]['price']}', style: TextStyle(fontSize: 11),),
+                        Text('\$$price', style: TextStyle(fontSize: 11),),
 
                       ],
                     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:classified_app/ui/components/my_adds_card.dart';
-import 'package:classified_app/data/data_products.dart';
+import 'package:classified_app/model/product_ad.model.dart';
+import 'package:classified_app/services/product_ad.services.dart';
 
 class MyAdds extends StatelessWidget {
   const MyAdds({super.key});
@@ -11,11 +12,37 @@ class MyAdds extends StatelessWidget {
       appBar: AppBar(
         title: const Text('My Adds'),
       ),
-      body: ListView.builder(
-          itemCount: ads.length,
-          itemBuilder: ((context, index) {
-            return MyAdCard(product: index);
-          })
+      body: FutureBuilder(
+        future: AdService().fetchMyAds(),
+          builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<ProductAd> myProductsAds = snapshot.data!;
+            return ListView.builder(
+                itemCount: myProductsAds.length,
+                itemBuilder: ((context, index) {
+                  return MyAdCard(
+                    product: index,
+                    title: myProductsAds[index].title!,
+                    description: myProductsAds[index].description!,
+                    price: myProductsAds[index].price!,
+                    image: myProductsAds[index].images![0],
+                    mobile: myProductsAds[index].mobile!,
+                    createdAt: myProductsAds[index].createdAt!,
+                  );
+                })
+            );
+          }
+
+          if (snapshot.hasError) {
+            return const Center(
+              child: Text("Something went wrong"),
+            );
+          }
+
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
