@@ -1,9 +1,41 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:classified_app/model/product_ad.model.dart';
 import 'package:classified_app/services/product_ad.services.dart';
 
-class CreateAd extends StatelessWidget {
+class CreateAd extends StatefulWidget {
   const CreateAd({super.key});
+
+  @override
+  State<CreateAd> createState() => _CreateAdState();
+}
+
+class _CreateAdState extends State<CreateAd> {
+
+  String _imagePath = '';
+
+  void captureImageFromGallery() async {
+    var file = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (file != null) {
+      print(file.path);
+      setState(() {
+        _imagePath = file.path;
+        print("Error");
+      });
+    }
+  }
+
+  void captureImageFromCamera() async {
+    print("Error");
+    var file = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (file != null) {
+      print(file.path);
+      setState(() {
+        _imagePath = file.path;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,22 +56,34 @@ class CreateAd extends StatelessWidget {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              Container(
-                width: 100,
-                height: 100,
-                margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-                child: OutlinedButton(
-                  onPressed: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
-                      Icon(Icons.photo_camera, color: Color(0xFFF25723),),
-                      Text(
-                        'Upload Photo',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Color(0xFFF25723)),
-                      ),
-                    ],
+              OutlinedButton(
+                onPressed: () {
+                  captureImageFromGallery();
+                },
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        _imagePath.isNotEmpty
+                            ? Image.file(
+                          File(_imagePath),
+                          height: 90,
+                          width: 90,
+                        )
+                            : const SizedBox(),
+                        const Icon(Icons.photo_camera, color: Color(0xFFF25723),),
+                        const Text(
+                          'Upload Photo',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Color(0xFFF25723)),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -111,7 +155,7 @@ class CreateAd extends StatelessWidget {
                         price: int.tryParse(_priceCtrl.text),
                         mobile: _cellphoneCtrl.text,
                         description: _descriptionCtrl.text,
-                        images: ["assets/images/products/switch.jpg"], // TODO: Make image_picker
+                        images: [_imagePath], // TODO: use the correct service to upload with image_picker
                       );
                       AdService().postAd(context, newAdPost);
                     }
