@@ -7,7 +7,7 @@ class ProductCard extends StatelessWidget {
     required this.title,
     required this.description,
     required this.price,
-    required this.image,
+    required this.images,
     required this.authorName,
     required this.mobile,
     required this.createdAt,
@@ -17,7 +17,7 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String description;
   final int price;
-  final String image;
+  final List<String> images;
   final String authorName;
   final String mobile;
   final String createdAt;
@@ -30,7 +30,7 @@ class ProductCard extends StatelessWidget {
           'title': title,
           'description': description,
           'price': price,
-          'image': image,
+          'images': images,
           'authorName': authorName,
           'mobile': mobile,
           'createdAt': createdAt,
@@ -40,7 +40,7 @@ class ProductCard extends StatelessWidget {
         child: Stack(
           children: [
             Image.network(
-              image,
+              images[0],
               height: double.infinity,
               fit: BoxFit.fitHeight,
             ),
