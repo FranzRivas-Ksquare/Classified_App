@@ -43,6 +43,14 @@ class ProductCard extends StatelessWidget {
               images[0],
               height: double.infinity,
               fit: BoxFit.fitHeight,
+              errorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
+                return Image.network(
+                  'https://www.pindula.co.zw/images/a/a7/No_Image.jpg',
+                  height: double.infinity,
+                  fit: BoxFit.fitHeight,
+                );
+                },
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -56,9 +64,14 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title, style: TextStyle(fontSize: 12, color: Colors.white),),
-                      const SizedBox(height: 5),
-                      Text('\$$price', style: TextStyle(fontSize: 11, color: Colors.white),)
+                      SizedBox(
+                          width: 140,
+                          height: 20,
+                          child: Text(title, style: const TextStyle(fontSize: 13, color: Colors.white),
+                          )
+                      ),
+                      const SizedBox(height: 1),
+                      Text('\$$price', style: const TextStyle(fontSize: 11, color: Color(0xFFF25723)),)
                     ],
                   ),
                 ),

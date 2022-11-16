@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:classified_app/ui/components/my_adds_card.dart';
+import 'package:classified_app/ui/components/my_ads_card.dart';
 import 'package:classified_app/model/product_ad.model.dart';
 import 'package:classified_app/services/product_ad.services.dart';
 

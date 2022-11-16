@@ -14,6 +14,7 @@ class _ImageViewerState extends State<ImageViewer> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Fix corrupt and null images
 
     List gallery = widget.data['images'];
 

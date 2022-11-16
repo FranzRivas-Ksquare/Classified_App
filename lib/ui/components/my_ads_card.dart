@@ -49,7 +49,16 @@ class MyAdCard extends StatelessWidget {
                     child: Image.network(
                         image,
                         height: double.infinity,
-                        fit: BoxFit.fitHeight),
+                        fit: BoxFit.fitHeight,
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace? stackTrace) {
+                          return Image.network(
+                            'https://www.pindula.co.zw/images/a/a7/No_Image.jpg',
+                            height: double.infinity,
+                            fit: BoxFit.fitHeight,
+                          );
+                        }
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),

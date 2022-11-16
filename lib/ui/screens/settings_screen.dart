@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:classified_app/ui/components/setting_info.dart';
+import 'package:classified_app/model/user.model.dart';
+// import 'package:classified_app/services/user.services.dart';
 
 class SettingScreen extends StatelessWidget {
   SettingScreen({super.key});

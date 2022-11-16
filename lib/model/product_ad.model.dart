@@ -23,16 +23,16 @@ class ProductAd {
         this.iV});
 
   ProductAd.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    title = json['title'];
-    description = json['description'];
-    price = json['price'];
-    images = json["images"] == null? [] : List<String>.from(json["images"].map((x) => x));
-    authorName = json['authorName'];
-    userId = json['userId'];
-    mobile = json['mobile'];
-    createdAt = json['createdAt'];
-    iV = json['__v'];
+    sId = json['_id'] ?? '';
+    title = json['title'] ?? '';
+    description = json['description'] ?? '';
+    price = json['price'] ?? '';
+    images = json["images"] == null? ['https://www.pindula.co.zw/images/a/a7/No_Image.jpg'] : List<String>.from(json["images"].map((x) => x));
+    authorName = json['authorName'] ?? '';
+    userId = json['userId'] ?? '';
+    mobile = json['mobile'] ?? '';
+    createdAt = json['createdAt'] ?? '';
+    iV = json['__v'] ?? '';
   }
 
   Map<String, dynamic> toJson() {

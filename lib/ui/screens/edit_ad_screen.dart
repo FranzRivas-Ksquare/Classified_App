@@ -55,7 +55,7 @@ class _EditAdState extends State<EditAd> {
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.data['images'].length,
                 itemBuilder: ((context, index) {
-                  return ImgSelect(img: widget.data['images'][index],);
+                  return ImgSelect(img: widget.data['images'][index],); // TODO: Fix corrupt and null images
                 }),
               ),
             ),
