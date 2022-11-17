@@ -15,7 +15,7 @@ class MyAdCard extends StatelessWidget {
   final int product;
   final String title;
   final String description;
-  final int price;
+  final num price;
   final String image;
   final String mobile;
   final String createdAt;
