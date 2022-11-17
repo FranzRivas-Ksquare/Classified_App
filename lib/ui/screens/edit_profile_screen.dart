@@ -27,9 +27,9 @@ class _EditProfileState extends State<EditProfile> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
-            const CircleAvatar(
+            CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage('assets/images/avatar_morty.jpg'),
+              backgroundImage: AssetImage(widget.data['avatar']),
             ),
             const SizedBox(height: 20),
             Form(

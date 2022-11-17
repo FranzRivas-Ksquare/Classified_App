@@ -3,14 +3,16 @@ class User {
   String? email;
   String? mobile;
   String? password;
+  String? image;
 
-  User({this.name, this.email, this.mobile, this.password});
+  User({this.name, this.email, this.mobile, this.password, this.image});
 
   User.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    email = json['email'];
-    password = json['password'];
-    mobile = json['mobile'];
+    name = json['name'] ?? '';
+    email = json['email'] ?? '';
+    password = json['password'] ?? '';
+    mobile = json['mobile'] ?? '';
+    image = json['imgURL'] ?? ''; // TODO: handle this 'https://picsum.photos/200' 
   }
 
   Map<String, dynamic> toJson() {
