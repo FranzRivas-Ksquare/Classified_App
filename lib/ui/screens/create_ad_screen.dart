@@ -1,4 +1,7 @@
 import 'dart:io';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:classified_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:classified_app/model/product_ad.model.dart';
@@ -14,26 +17,29 @@ class CreateAd extends StatefulWidget {
 class _CreateAdState extends State<CreateAd> {
 
   String _imagePath = '';
+  String _imageServerPath = '';
+
+  _upload(filePath) async {
+    var url = Uri.parse("https://adlisting.herokuapp.com/upload/profile");
+    var request = http.MultipartRequest('POST', url);
+    http.MultipartFile image = await http.MultipartFile.fromPath('avatar', filePath);
+    request.files.add(image);
+    var response = await request.send();
+    var resp = await response.stream.bytesToString();
+    var respJson = jsonDecode(resp);
+    setState(() {
+      _imageServerPath = respJson['data']['path'];
+    });
+  }
 
   void captureImageFromGallery() async {
     var file = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (file != null) {
-      print(file.path);
-      setState(() {
-        _imagePath = file.path;
-        print("Error");
-      });
-    }
-  }
-
-  void captureImageFromCamera() async {
-    print("Error");
-    var file = await ImagePicker().pickImage(source: ImageSource.camera);
-    if (file != null) {
-      print(file.path);
+      kDebugFunc(file.path);
       setState(() {
         _imagePath = file.path;
       });
+      _upload(file.path);
     }
   }
 
@@ -72,8 +78,8 @@ class _CreateAdState extends State<CreateAd> {
                         _imagePath.isNotEmpty
                             ? Image.file(
                           File(_imagePath),
-                          height: 90,
-                          width: 90,
+                          height: 100,
+                          width: 100,
                         )
                             : const SizedBox(),
                         const Icon(Icons.photo_camera, color: Color(0xFFF25723),),
@@ -155,7 +161,7 @@ class _CreateAdState extends State<CreateAd> {
                         price: int.tryParse(_priceCtrl.text),
                         mobile: _cellphoneCtrl.text,
                         description: _descriptionCtrl.text,
-                        images: [_imagePath], // TODO: use the correct service to upload with image_picker
+                        images: [_imageServerPath],
                       );
                       AdService().postAd(context, newAdPost);
                     }
