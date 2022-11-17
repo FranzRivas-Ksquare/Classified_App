@@ -29,7 +29,7 @@ class _EditProfileState extends State<EditProfile> {
           children: <Widget>[
             CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage(widget.data['avatar']),
+              backgroundImage: NetworkImage(widget.data['avatar']),
             ),
             const SizedBox(height: 20),
             Form(

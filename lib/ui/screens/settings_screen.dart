@@ -4,13 +4,7 @@ import 'package:classified_app/model/user.model.dart';
 import 'package:classified_app/services/user.services.dart';
 
 class SettingScreen extends StatelessWidget {
-  SettingScreen({super.key});
-
-  Map user = {
-    'name': 'Evil Morty',
-    'email': 'evil_morty@adultswim.com',
-    'cellphone': '+1526966966969',
-  };
+  const SettingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +19,13 @@ class SettingScreen extends StatelessWidget {
             FutureBuilder(
               future: UserServices().getUserInfo(context),
               builder: (context, snapshot) {
-                User myInfo = snapshot.data!;
                 if (snapshot.hasData) {
+                  User myInfo = snapshot.data!;
                   return Row(
                     children: [
                       CircleAvatar(
                         radius: 30,
-                        backgroundImage: AssetImage(
+                        backgroundImage: NetworkImage(
                             myInfo.image!),
                       ),
                       const SizedBox(width: 17),
@@ -46,7 +40,8 @@ class SettingScreen extends StatelessWidget {
                                 myInfo.name!,
                                 style: TextStyle(fontSize: 15),),
                               const SizedBox(height: 5,),
-                              Text(myInfo.mobile!,
+                              Text(
+                                myInfo.mobile!,
                                 style: TextStyle(fontSize: 10),),
                             ],
                           ),

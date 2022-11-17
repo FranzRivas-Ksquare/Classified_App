@@ -4,9 +4,16 @@ import 'package:classified_app/model/product_ad.model.dart';
 import 'package:classified_app/services/product_ad.services.dart';
 
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  HomeScreen({super.key, required this.data});
 
+  dynamic data;
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +24,8 @@ class HomeScreen extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(context, '/settings');
             },
-            child: const CircleAvatar(
-              backgroundImage: AssetImage('assets/images/avatar_morty.jpg'),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(widget.data['avatar']),
             ),
           ),
         ],

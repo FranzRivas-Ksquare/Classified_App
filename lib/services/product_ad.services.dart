@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:classified_app/model/product_ad.model.dart';
-import 'package:classified_app/services/auth.service.dart';
 import 'package:classified_app/utils/constants.dart';
 import 'package:classified_app/utils/alert_manager.dart';
 
@@ -46,12 +45,7 @@ class AdService {
       },
     );
     kDebugFunc(resp.statusCode);
-    if (resp.statusCode == 401) {
-      var isNewTokenGenerated = await AuthService().refreshToken();
-      if (isNewTokenGenerated) {
-        fetchMyAds();
-      }
-    }
+
     kDebugFunc(resp.body);
     var respJson = jsonDecode(resp.body);
 
@@ -78,14 +72,8 @@ class AdService {
           'Authorization': 'Bearer $token'
         },
       );
-      kDebugFunc(resp.statusCode);
-      if (resp.statusCode == 401) {
-        var isNewTokenGenerated = await AuthService().refreshToken();
-        if (isNewTokenGenerated) {
-          postAd(context, newAd);
-        }
-        Navigator.pop(context);
-      }
+      kDebugFunc(resp);
+      Navigator.pop(context);
     } catch (e) {
       kDebugFunc(e);
       AlertManager().displaySnackbar(context, newAdObj['message']);

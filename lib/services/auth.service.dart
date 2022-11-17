@@ -43,39 +43,12 @@ class AuthService {
         storage.write(key: 'token', value: respObj['data']['token']);
         storage.write(
             key: 'refreshToken', value: respObj['data']['refreshToken']);
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.pushReplacementNamed(context, '/home', arguments: {
+          'avatar': respObj['data']['user']['imgURL'],
+        });
       }
     } catch (e) {
       kDebugFunc(e);
     }
   }
-
-  Future<bool> refreshToken() async {
-    var storage = const FlutterSecureStorage();
-    var userId = await storage.read(key: 'userId');
-    var refreshToken = await storage.read(key: 'refreshToken');
-    var url = Uri.parse("$apiUrl/auth/refreshToken");
-    if (refreshToken != null) {
-      var resp = await http.post(url,
-          body: jsonEncode(
-            {
-              "id": userId,
-              "refreshToken": refreshToken,
-            },
-          ),
-          headers: {
-            'Content-Type': 'application/json',
-          });
-      var respObj = jsonDecode(resp.body);
-      if (respObj['status'] == true) {
-        storage.write(key: 'token', value: respObj['data']['token']);
-        storage.write(
-            key: 'refreshToken', value: respObj['data']['refreshToken']);
-      }
-      return true;
-    } else {
-      return false;
-    }
-  }
-
 }
