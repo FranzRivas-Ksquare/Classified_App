@@ -20,9 +20,10 @@ class EditAd extends StatefulWidget {
 class _EditAdState extends State<EditAd> {
 
   String _imagePath = '';
-  String _imageServerPath = '';
+  String _imageServerPath2 = '';
 
   _upload(filePath) async {
+    print('************************************************************');
     var url = Uri.parse("https://adlisting.herokuapp.com/upload/profile");
     var request = http.MultipartRequest('POST', url);
     http.MultipartFile image = await http.MultipartFile.fromPath('avatar', filePath);
@@ -31,7 +32,7 @@ class _EditAdState extends State<EditAd> {
     var resp = await response.stream.bytesToString();
     var respJson = jsonDecode(resp);
     setState(() {
-      _imageServerPath = respJson['data']['path'];
+      _imageServerPath2 = respJson['data']['path'];
     });
   }
 
@@ -66,8 +67,8 @@ class _EditAdState extends State<EditAd> {
           child: Column(
             children: <Widget>[
               Container(
-                width: 100,
-                height: 100,
+                width: 130,
+                height: 130,
                 margin: const EdgeInsets.fromLTRB(0, 30, 0, 20),
                 child: OutlinedButton(
                   onPressed: () {
@@ -77,7 +78,7 @@ class _EditAdState extends State<EditAd> {
                       ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const <Widget>[
-                      Icon(Icons.image, color: Color(0xFFF25723),),
+                      Icon(Icons.image, color: Color(0xFFF25723), size: 50,),
                       Text(
                         'Update Image',
                         textAlign: TextAlign.center,
@@ -85,7 +86,7 @@ class _EditAdState extends State<EditAd> {
                       ),
                     ],
                   )
-                      : Image.file(File(_imagePath)),
+                      : Image.file(File(_imagePath), height: double.infinity, fit: BoxFit.fitHeight,),
                 ),
               ),
               SizedBox(
@@ -97,7 +98,7 @@ class _EditAdState extends State<EditAd> {
                   itemBuilder: ((context, index) {
                     return ImgSelect(
                       img: widget.data['images'][index],
-                    ); // TODO: Fix corrupt and null images
+                    );
                   }),
                 ),
               ),
@@ -169,10 +170,10 @@ class _EditAdState extends State<EditAd> {
                       price: num.tryParse(_priceCtrl.text),
                       mobile: _cellphoneCtrl.text,
                       description: _descriptionCtrl.text,
-                      images: [_imageServerPath],
+                      images: [_imageServerPath2],
                     );
 
-                    kDebugFunc('Loooook $_imageServerPath');
+                    kDebugFunc('Loooook $_imageServerPath2');
 
                     AdService().editAd(context, widget.data['id'], upAd);
 

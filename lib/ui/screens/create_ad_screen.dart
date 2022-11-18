@@ -70,18 +70,17 @@ class _CreateAdState extends State<CreateAd> {
                   onPressed: () {
                     captureImageFromGallery();
                   },
-                  child: Column(
+                  child: _imagePath.isNotEmpty
+                      ? Image.file(
+                    File(_imagePath),
+                    height: double.infinity,
+                    fit: BoxFit.fitHeight,
+                  )
+                      : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      _imagePath.isNotEmpty
-                          ? Image.file(
-                        File(_imagePath),
-                        height: 100,
-                        width: 100,
-                      )
-                          : const SizedBox(),
-                      const Icon(Icons.image, color: Color(0xFFF25723), size: 50,),
-                      const Text(
+                    children: const <Widget>[
+                      Icon(Icons.image, color: Color(0xFFF25723), size: 50,),
+                      Text(
                         'Upload Image',
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Color(0xFFF25723)),
