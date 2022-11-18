@@ -62,34 +62,31 @@ class _CreateAdState extends State<CreateAd> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              OutlinedButton(
-                onPressed: () {
-                  captureImageFromGallery();
-                },
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        _imagePath.isNotEmpty
-                            ? Image.file(
-                          File(_imagePath),
-                          height: 100,
-                          width: 100,
-                        )
-                            : const SizedBox(),
-                        const Icon(Icons.photo_camera, color: Color(0xFFF25723),),
-                        const Text(
-                          'Upload Photo',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Color(0xFFF25723)),
-                        ),
-                      ],
-                    ),
+              Container(
+                width: 130,
+                height: 130,
+                margin: const EdgeInsets.fromLTRB(0, 30, 0, 20),
+                child: OutlinedButton(
+                  onPressed: () {
+                    captureImageFromGallery();
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      _imagePath.isNotEmpty
+                          ? Image.file(
+                        File(_imagePath),
+                        height: 100,
+                        width: 100,
+                      )
+                          : const SizedBox(),
+                      const Icon(Icons.image, color: Color(0xFFF25723), size: 50,),
+                      const Text(
+                        'Upload Image',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Color(0xFFF25723)),
+                      ),
+                    ],
                   ),
                 ),
               ),
