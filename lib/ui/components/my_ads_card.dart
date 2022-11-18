@@ -8,7 +8,7 @@ class MyAdCard extends StatelessWidget {
     required this.title,
     required this.description,
     required this.price,
-    required this.image,
+    required this.images,
     required this.mobile,
     required this.createdAt,
   });
@@ -18,7 +18,7 @@ class MyAdCard extends StatelessWidget {
   final String title;
   final String description;
   final num price;
-  final String image;
+  final List<String> images;
   final String mobile;
   final String createdAt;
 
@@ -28,7 +28,7 @@ class MyAdCard extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, '/edit_add', arguments: {
           'id': id,
-          'images': image,
+          'images': images,
           'title': title,
           'price': price,
           'mobile': mobile,
@@ -50,7 +50,7 @@ class MyAdCard extends StatelessWidget {
                     width: 90,
                     height: 100,
                     child: Image.network(
-                        image,
+                        images[0],
                         height: double.infinity,
                         fit: BoxFit.fitHeight,
                         errorBuilder: (BuildContext context, Object exception,

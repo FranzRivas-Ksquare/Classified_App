@@ -26,7 +26,7 @@ class MyAdds extends StatelessWidget {
                     title: myProductsAds[index].title!,
                     description: myProductsAds[index].description!,
                     price: myProductsAds[index].price!,
-                    image: myProductsAds[index].images![0],
+                    images: myProductsAds[index].images!,
                     mobile: myProductsAds[index].mobile!,
                     createdAt: myProductsAds[index].createdAt!,
                   );

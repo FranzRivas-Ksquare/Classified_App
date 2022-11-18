@@ -15,7 +15,18 @@ class ImgSelect extends StatelessWidget {
       decoration: BoxDecoration(
           border: Border.all(color: Color(0xFFF25723))
       ),
-      child: Image.network(img, height: double.infinity, fit: BoxFit.fitHeight,),
+      child: Image.network(
+        img, height: double.infinity,
+        fit: BoxFit.fitHeight,
+        errorBuilder: (BuildContext context, Object exception,
+            StackTrace? stackTrace) {
+          return Image.network(
+            'https://www.pindula.co.zw/images/a/a7/No_Image.jpg',
+            height: double.infinity,
+            fit: BoxFit.fitHeight,
+          );
+        },
+      ),
     );
   }
 
