@@ -38,14 +38,14 @@ class _HomeScreenState extends State<HomeScreen> {
             return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 2,
-                mainAxisSpacing: 2,
+                crossAxisSpacing: 1,
+                mainAxisSpacing: 1,
                 childAspectRatio: 0.7,
               ),
               itemCount: productAds.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: ProductCard(
                     product: index,
                     title: productAds[index].title!,
