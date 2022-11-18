@@ -155,7 +155,7 @@ class _CreateAdState extends State<CreateAd> {
                     if(_formKey.currentState!.validate()) {
                       ProductAd newAdPost = ProductAd(
                         title: _titleCtrl.text,
-                        price: num.tryParse(_priceCtrl.text),
+                        price: num.tryParse(_priceCtrl.text) ?? 0,
                         mobile: _cellphoneCtrl.text,
                         description: _descriptionCtrl.text,
                         images: [_imageServerPath],
