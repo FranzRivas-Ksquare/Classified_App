@@ -95,7 +95,7 @@ class AdService {
           'Authorization': 'Bearer $token'
         },
       );
-      kDebugFunc(resp);
+      kDebugFunc('Mira el resp: ${resp.body}');
       Navigator.pop(context);
     } catch (e) {
       kDebugFunc(e);

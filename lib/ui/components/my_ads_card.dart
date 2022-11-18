@@ -4,6 +4,7 @@ class MyAdCard extends StatelessWidget {
   const MyAdCard({
     super.key,
     required this.product,
+    required this.id,
     required this.title,
     required this.description,
     required this.price,
@@ -13,6 +14,7 @@ class MyAdCard extends StatelessWidget {
   });
 
   final int product;
+  final String id;
   final String title;
   final String description;
   final num price;
@@ -25,6 +27,7 @@ class MyAdCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, '/edit_add', arguments: {
+          'id': id,
           'images': image,
           'title': title,
           'price': price,

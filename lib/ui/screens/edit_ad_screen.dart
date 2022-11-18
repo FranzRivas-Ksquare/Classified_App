@@ -1,5 +1,12 @@
+import 'dart:io';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
+import 'package:classified_app/model/product_ad.model.dart';
+import 'package:classified_app/services/product_ad.services.dart';
 import 'package:classified_app/ui/components/image_select.dart';
+import 'package:classified_app/utils/constants.dart';
 
 class EditAd extends StatefulWidget {
   EditAd({super.key, required this.data});
@@ -11,6 +18,34 @@ class EditAd extends StatefulWidget {
 }
 
 class _EditAdState extends State<EditAd> {
+
+  String _imagePath = '';
+  String _imageServerPath = '';
+
+  _upload(filePath) async {
+    var url = Uri.parse("https://adlisting.herokuapp.com/upload/photos");
+    var request = http.MultipartRequest('POST', url);
+    http.MultipartFile image = await http.MultipartFile.fromPath('photos', filePath);
+    request.files.add(image);
+    var response = await request.send();
+    var resp = await response.stream.bytesToString();
+    var respJson = jsonDecode(resp);
+    setState(() {
+      _imageServerPath = respJson['data']['path'];
+    });
+  }
+
+  void captureImageFromGallery() async {
+    var file = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (file != null) {
+      kDebugFunc(file.path);
+      setState(() {
+        _imagePath = file.path;
+      });
+      _upload(file.path);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -34,7 +69,9 @@ class _EditAdState extends State<EditAd> {
               height: 100,
               margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
               child: OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  captureImageFromGallery();
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const <Widget>[
@@ -122,7 +159,18 @@ class _EditAdState extends State<EditAd> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFF25723)),
                 onPressed: () {
-                  Navigator.pop(context, '/home');
+                  ProductAd upAd = ProductAd(
+                    title: _titleCtrl.text,
+                    price: num.tryParse(_priceCtrl.text),
+                    mobile: _cellphoneCtrl.text,
+                    description: _descriptionCtrl.text,
+                    images: [_imageServerPath],
+                  );
+
+                  kDebugFunc('Loooook $_imageServerPath');
+
+                  AdService().editAd(context, widget.data['id'], upAd);
+
                 },
                 child: const Text('Submit Add'),
               ),

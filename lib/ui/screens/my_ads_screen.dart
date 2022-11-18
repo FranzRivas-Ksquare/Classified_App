@@ -22,6 +22,7 @@ class MyAdds extends StatelessWidget {
                 itemBuilder: ((context, index) {
                   return MyAdCard(
                     product: index,
+                    id: myProductsAds[index].sId!,
                     title: myProductsAds[index].title!,
                     description: myProductsAds[index].description!,
                     price: myProductsAds[index].price!,
