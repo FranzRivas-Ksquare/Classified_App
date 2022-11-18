@@ -79,4 +79,28 @@ class AdService {
       AlertManager().displaySnackbar(context, newAdObj['message']);
     }
   }
+
+  void editAd(context, String id, ProductAd updateAd) async {
+    var storage = const FlutterSecureStorage();
+    var url = Uri.parse("$apiUrl/ads/$id");
+    var updateAdObj = updateAd.toJson();
+    try {
+      var token = await storage.read(key: 'token');
+      kDebugFunc(token);
+      var resp = await http.patch(
+        url,
+        body: jsonEncode(updateAdObj),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        },
+      );
+      kDebugFunc(resp);
+      Navigator.pop(context);
+    } catch (e) {
+      kDebugFunc(e);
+      AlertManager().displaySnackbar(context, updateAdObj['message']);
+    }
+  }
+
 }
