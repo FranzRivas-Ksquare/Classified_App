@@ -12,7 +12,7 @@ class User {
     email = json['email'] ?? '';
     password = json['password'] ?? '';
     mobile = json['mobile'] ?? '';
-    image = json['imgURL'] ?? ''; // TODO: handle this 'https://picsum.photos/200' 
+    image = json['imgURL'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -21,6 +21,7 @@ class User {
     data['email'] = email;
     data['mobile'] = mobile;
     data['password'] = password;
+    data['imgURL'] = image;
     return data;
   }
 }

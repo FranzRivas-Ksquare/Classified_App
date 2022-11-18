@@ -26,7 +26,7 @@ class ProductAd {
     sId = json['_id'] ?? '';
     title = json['title'] ?? '';
     description = json['description'] ?? '';
-    price = json['price'] ?? '';
+    price = json['price'] ?? 0;
     images = json["images"] == null? ['https://www.pindula.co.zw/images/a/a7/No_Image.jpg'] : List<String>.from(json["images"].map((x) => x));
     authorName = json['authorName'] ?? '';
     userId = json['userId'] ?? '';
