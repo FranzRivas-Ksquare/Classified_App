@@ -77,12 +77,12 @@ class AdService {
       var respObj = jsonDecode(resp.body);
 
       if (respObj['status'] == false) {
-        AlertManager().displaySnackbar(context, respObj['message']);
+        AlertManager().displaySnackbar(context, 'Something went wrong');
       }
       if (respObj['status'] == true) {
-        AlertManager().displaySnackbar(context, respObj['message']);
-        Navigator.pop(context);
+        AlertManager().displaySnackbar(context, 'Create add success');
       }
+      Navigator.pop(context);
 
     } catch (e) {
       kDebugFunc(e);
@@ -108,13 +108,16 @@ class AdService {
 
       var respObj = jsonDecode(resp.body);
 
+      kDebugFunc('${respObj['status']}');
+
       if (respObj['status'] == false) {
-        AlertManager().displaySnackbar(context, respObj['message']);
+        AlertManager().displaySnackbar(context, 'Something went wrong');
       }
       if (respObj['status'] == true) {
-        AlertManager().displaySnackbar(context, respObj['message']);
-        Navigator.pop(context);
+        AlertManager().displaySnackbar(context, 'Edit add success');
       }
+      Navigator.pop(context);
+      Navigator.pop(context);
 
     } catch (e) {
       kDebugFunc(e);

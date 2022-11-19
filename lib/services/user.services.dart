@@ -57,11 +57,11 @@ class UserServices {
       var respJson = jsonDecode(resp.body);
 
       if (respJson['status'] == false) {
-        AlertManager().displaySnackbar(context, respJson['message']);
+        AlertManager().displaySnackbar(context, 'Something went wrong');
       }
 
       if (respJson['status'] == true) {
-        AlertManager().displaySnackbar(context, respJson['message']);
+        AlertManager().displaySnackbar(context, 'Update user successfully');
         Navigator.pushReplacementNamed(context, '/settings');
       }
 

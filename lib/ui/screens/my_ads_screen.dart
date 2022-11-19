@@ -29,6 +29,7 @@ class MyAdds extends StatelessWidget {
                     images: myProductsAds[index].images!,
                     mobile: myProductsAds[index].mobile!,
                     createdAt: myProductsAds[index].createdAt!,
+                    authorName: myProductsAds[index].authorName!,
                   );
                 })
             );

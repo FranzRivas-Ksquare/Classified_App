@@ -11,6 +11,7 @@ class MyAdCard extends StatelessWidget {
     required this.images,
     required this.mobile,
     required this.createdAt,
+    required this.authorName,
   });
 
   final int product;
@@ -21,6 +22,7 @@ class MyAdCard extends StatelessWidget {
   final List<String> images;
   final String mobile;
   final String createdAt;
+  final String authorName;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class MyAdCard extends StatelessWidget {
           'price': price,
           'mobile': mobile,
           'description': description,
+          'authorName': authorName,
         });
       },
       child: Container(

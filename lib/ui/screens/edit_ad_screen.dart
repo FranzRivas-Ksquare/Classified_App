@@ -171,9 +171,10 @@ class _EditAdState extends State<EditAd> {
                       mobile: _cellphoneCtrl.text,
                       description: _descriptionCtrl.text,
                       images: [_imageServerPath2],
+                      authorName: widget.data['authorName'] ?? '',
                     );
 
-                    kDebugFunc('Loooook $_imageServerPath2');
+                    kDebugFunc('Authors name:  ${widget.data['authorName']}');
 
                     AdService().editAd(context, widget.data['id'], upAd);
 

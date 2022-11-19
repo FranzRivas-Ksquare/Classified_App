@@ -23,7 +23,7 @@ class AuthService {
         AlertManager().displaySnackbar(context, respObj['message']);
       }
       if (respObj['status'] == true) {
-        AlertManager().displaySnackbar(context, respObj['message']);
+        AlertManager().displaySnackbar(context, 'User register success');
         Navigator.pop(context, '/login');
       }
 
