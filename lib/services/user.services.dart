@@ -53,7 +53,18 @@ class UserServices {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer $token',
           });
-      Navigator.pushReplacementNamed(context, '/settings');
+
+      var respJson = jsonDecode(resp.body);
+
+      if (respJson['status'] == false) {
+        AlertManager().displaySnackbar(context, respJson['message']);
+      }
+
+      if (respJson['status'] == true) {
+        AlertManager().displaySnackbar(context, respJson['message']);
+        Navigator.pushReplacementNamed(context, '/settings');
+      }
+
       kDebugFunc(resp);
     } catch (e) {
       kDebugFunc(e);

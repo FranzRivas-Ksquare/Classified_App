@@ -15,9 +15,17 @@ class AuthService {
       var resp = await http.post(url, body: jsonEncode(userObj), headers: {
         'Content-Type': 'application/json',
       });
-      kDebugFunc(resp.body);
 
-      Navigator.pop(context, '/login');
+      kDebugFunc(resp.body);
+      var respObj = jsonDecode(resp.body);
+
+      if (respObj['status'] == false) {
+        AlertManager().displaySnackbar(context, respObj['message']);
+      }
+      if (respObj['status'] == true) {
+        AlertManager().displaySnackbar(context, respObj['message']);
+        Navigator.pop(context, '/login');
+      }
 
     } catch (e) {
       kDebugFunc(e);

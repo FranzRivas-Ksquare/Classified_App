@@ -73,10 +73,19 @@ class AdService {
         },
       );
       kDebugFunc(resp);
-      Navigator.pop(context);
+
+      var respObj = jsonDecode(resp.body);
+
+      if (respObj['status'] == false) {
+        AlertManager().displaySnackbar(context, respObj['message']);
+      }
+      if (respObj['status'] == true) {
+        AlertManager().displaySnackbar(context, respObj['message']);
+        Navigator.pop(context);
+      }
+
     } catch (e) {
       kDebugFunc(e);
-      AlertManager().displaySnackbar(context, newAdObj['message']);
     }
   }
 
@@ -95,11 +104,20 @@ class AdService {
           'Authorization': 'Bearer $token'
         },
       );
-      kDebugFunc('Mira el resp: ${resp.body}');
-      Navigator.pop(context);
+      kDebugFunc('This is the resp: ${resp.body}');
+
+      var respObj = jsonDecode(resp.body);
+
+      if (respObj['status'] == false) {
+        AlertManager().displaySnackbar(context, respObj['message']);
+      }
+      if (respObj['status'] == true) {
+        AlertManager().displaySnackbar(context, respObj['message']);
+        Navigator.pop(context);
+      }
+
     } catch (e) {
       kDebugFunc(e);
-      AlertManager().displaySnackbar(context, updateAdObj['message']);
     }
   }
 
