@@ -148,6 +148,8 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                   ),
                   TextButton(onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
                     Navigator.pushReplacementNamed(context, '/');
                   },
                     child: const Text('Logout', style: TextStyle(color: Color(0xFFF25723)),),
