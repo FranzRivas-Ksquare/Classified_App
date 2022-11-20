@@ -20,7 +20,7 @@ class EditAd extends StatefulWidget {
 class _EditAdState extends State<EditAd> {
 
   String _imagePath = '';
-  String _imageServerPath2 = '';
+  String _imageServerPath = '';
 
   _upload(filePath) async {
     print('************************************************************');
@@ -32,7 +32,7 @@ class _EditAdState extends State<EditAd> {
     var resp = await response.stream.bytesToString();
     var respJson = jsonDecode(resp);
     setState(() {
-      _imageServerPath2 = respJson['data']['path'];
+      _imageServerPath = respJson['data']['path'];
     });
   }
 
@@ -170,7 +170,7 @@ class _EditAdState extends State<EditAd> {
                       price: num.tryParse(_priceCtrl.text),
                       mobile: _cellphoneCtrl.text,
                       description: _descriptionCtrl.text,
-                      images: [_imageServerPath2],
+                      images: [_imageServerPath],
                       authorName: widget.data['authorName'] ?? '',
                     );
 
