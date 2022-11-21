@@ -19,11 +19,18 @@ class EditAd extends StatefulWidget {
 
 class _EditAdState extends State<EditAd> {
 
+  bool _isLoading = false;
+
+  switchSetLoading() {
+    setState(() {
+      _isLoading = !_isLoading;
+    });
+  }
+
   String _imagePath = '';
   String _imageServerPath = '';
 
   _upload(filePath) async {
-    print('************************************************************');
     var url = Uri.parse("https://adlisting.herokuapp.com/upload/profile");
     var request = http.MultipartRequest('POST', url);
     http.MultipartFile image = await http.MultipartFile.fromPath('avatar', filePath);
@@ -176,10 +183,15 @@ class _EditAdState extends State<EditAd> {
 
                     kDebugFunc('Authors name:  ${widget.data['authorName']}');
 
-                    AdService().editAd(context, widget.data['id'], upAd);
+                    switchSetLoading();
+                    AdService().editAd(context, widget.data['id'], upAd).then((value) => value = switchSetLoading());
 
                   },
-                  child: const Text('Submit Add'),
+                  child: Visibility(
+                    visible: _isLoading,
+                    replacement: const Text('Submit Add'),
+                    child: const CircularProgressIndicator(color: Colors.white,),
+                  ),
                 ),
               ),
             ],

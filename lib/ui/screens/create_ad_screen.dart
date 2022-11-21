@@ -16,6 +16,14 @@ class CreateAd extends StatefulWidget {
 
 class _CreateAdState extends State<CreateAd> {
 
+  bool _isLoading = false;
+
+  switchSetLoading() {
+    setState(() {
+      _isLoading = !_isLoading;
+    });
+  }
+
   String _imagePath = '';
   String _imageServerPath = '';
 
@@ -159,10 +167,15 @@ class _CreateAdState extends State<CreateAd> {
                         description: _descriptionCtrl.text,
                         images: [_imageServerPath],
                       );
-                      AdService().postAd(context, newAdPost);
+                      switchSetLoading();
+                      AdService().postAd(context, newAdPost).then((value) => value = switchSetLoading());
                     }
                   },
-                  child: const Text('Submit Add'),
+                  child: Visibility(
+                    visible: _isLoading,
+                    replacement: const Text('Submit Add'),
+                    child: const CircularProgressIndicator(color: Colors.white,),
+                  ),
                 ),
               ),
             ],

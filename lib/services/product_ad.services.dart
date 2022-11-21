@@ -57,7 +57,7 @@ class AdService {
     return myAds;
   }
 
-  void postAd(context, ProductAd newAd) async {
+  Future postAd(context, ProductAd newAd) async {
     var storage = const FlutterSecureStorage();
     var url = Uri.parse("$apiUrl/ads");
     var newAdObj = newAd.toJson();
@@ -89,7 +89,7 @@ class AdService {
     }
   }
 
-  void editAd(context, String id, ProductAd updateAd) async {
+  Future editAd(context, String id, ProductAd updateAd) async {
     var storage = const FlutterSecureStorage();
     var url = Uri.parse("$apiUrl/ads/$id");
     var updateAdObj = updateAd.toJson();
