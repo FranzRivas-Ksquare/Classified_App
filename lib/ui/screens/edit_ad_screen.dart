@@ -172,20 +172,20 @@ class _EditAdState extends State<EditAd> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFF25723)),
                   onPressed: () {
-                    ProductAd upAd = ProductAd(
-                      title: _titleCtrl.text,
-                      price: num.tryParse(_priceCtrl.text),
-                      mobile: _cellphoneCtrl.text,
-                      description: _descriptionCtrl.text,
-                      images: [_imageServerPath],
-                      authorName: widget.data['authorName'] ?? '',
-                    );
-
-                    kDebugFunc('Authors name:  ${widget.data['authorName']}');
-
                     switchSetLoading();
-                    AdService().editAd(context, widget.data['id'], upAd).then((value) => value = switchSetLoading());
+                    var wait = Future.delayed(Duration(seconds: 5), () {
+                      ProductAd upAd = ProductAd(
+                        title: _titleCtrl.text,
+                        price: num.tryParse(_priceCtrl.text),
+                        mobile: _cellphoneCtrl.text,
+                        description: _descriptionCtrl.text,
+                        images: [_imageServerPath],
+                        authorName: widget.data['authorName'] ?? '',
+                      );
 
+                      kDebugFunc('Authors name:  ${widget.data['authorName']}');
+                      AdService().editAd(context, widget.data['id'], upAd).then((value) => value = switchSetLoading());
+                    });
                   },
                   child: Visibility(
                     visible: _isLoading,
