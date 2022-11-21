@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class AuthService {
     }
   }
 
-  void login(context, User user) async {
+  Future login(context, User user) async {
     var storage = const FlutterSecureStorage();
     var url = Uri.parse("$apiUrl/auth/login");
     kDebugFunc(url);

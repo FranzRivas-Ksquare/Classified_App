@@ -2,8 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:classified_app/model/user.model.dart';
 import 'package:classified_app/services/auth.service.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
+  bool _isLoading = false;
+
+  switchSetLoading() {
+    setState(() {
+      _isLoading = !_isLoading;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,18 +94,23 @@ class LoginScreen extends StatelessWidget {
                         height: 50,
                         margin: const EdgeInsets.all(10),
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFF25723)),
-                            onPressed: () {
-                              if(_formKey.currentState!.validate()) {
-                                User user = User(
-                                  email: _emailCtrl.text,
-                                  password: _passwordCtrl.text,
-                                );
-                                AuthService().login(context, user);
-                              }
-                            },
-                            child: const Text('Login'),
-                        ),
+                            style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFF25723)),
+                              onPressed: () {
+                                if(_formKey.currentState!.validate()) {
+                                  User user = User(
+                                    email: _emailCtrl.text,
+                                    password: _passwordCtrl.text,
+                                  );
+                                  switchSetLoading();
+                                  AuthService().login(context, user).then((value) => value = switchSetLoading());
+                                }
+                              },
+                              child: Visibility(
+                                visible: _isLoading,
+                                  replacement: const Text('Login'),
+                                  child: const CircularProgressIndicator(color: Colors.white,),
+                              ),
+                          ),
                       ),
                       TextButton(onPressed: () {
                         Navigator.pushNamed(context, '/register');
@@ -108,5 +127,4 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
-
 }
