@@ -2,8 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:classified_app/model/user.model.dart';
 import 'package:classified_app/services/auth.service.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+
+  bool _isLoading = false;
+
+  switchSetLoading() {
+    setState(() {
+      _isLoading = !_isLoading;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,10 +139,15 @@ class RegisterScreen extends StatelessWidget {
                                 password: _passwordCtrl.text,
                               );
 
-                              AuthService().register(context, user);
+                              switchSetLoading();
+                              AuthService().register(context, user).then((value) => value = switchSetLoading());
                             }
                           },
-                          child: const Text('Register Now'),
+                          child: Visibility(
+                            visible: _isLoading,
+                            replacement: const Text('Register Now'),
+                            child: const CircularProgressIndicator(color: Colors.white,),
+                          ),
                         ),
                       ),
                       TextButton(onPressed: () {
@@ -146,5 +165,4 @@ class RegisterScreen extends StatelessWidget {
       ),
     );
   }
-
 }

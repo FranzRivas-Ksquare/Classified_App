@@ -8,7 +8,7 @@ import 'package:classified_app/utils/alert_manager.dart';
 import 'package:classified_app/utils/constants.dart';
 
 class AuthService {
-  void register(context, User user) async {
+  Future register(context, User user) async {
     var url = Uri.parse("$apiUrl/auth/register");
     kDebugFunc(url);
     var userObj = user.toJson();
