@@ -39,7 +39,7 @@ class UserServices {
     return userInfo;
   }
 
-  void updateUserInfo(context, User user) async {
+  Future updateUserInfo(context, User user) async {
     var storage = const FlutterSecureStorage();
     var url = Uri.parse("$apiUrl/user");
     var token = await storage.read(key: 'token');

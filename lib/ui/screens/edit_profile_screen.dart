@@ -18,6 +18,14 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
 
+  bool _isLoading = false;
+
+  switchSetLoading() {
+    setState(() {
+      _isLoading = !_isLoading;
+    });
+  }
+
   String _imagePath = '';
   String _imageServerPath = '';
 
@@ -143,9 +151,15 @@ class _EditProfileState extends State<EditProfile> {
 
                           kDebugFunc(updateUser);
 
-                          UserServices().updateUserInfo(context, updateUser);
+                          switchSetLoading();
+                          UserServices().updateUserInfo(context, updateUser).then((value) => value = switchSetLoading());
+                          
                         },
-                        child: const Text('Update Profile'),
+                        child: Visibility(
+                          visible: _isLoading,
+                          replacement: const Text('Update Profile'),
+                          child: const CircularProgressIndicator(color: Colors.white,),
+                        ),
                       ),
                     ),
                     TextButton(onPressed: () {
