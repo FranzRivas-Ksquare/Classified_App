@@ -160,15 +160,20 @@ class _CreateAdState extends State<CreateAd> {
                   style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFF25723)),
                   onPressed: () {
                     if(_formKey.currentState!.validate()) {
-                      ProductAd newAdPost = ProductAd(
-                        title: _titleCtrl.text,
-                        price: num.tryParse(_priceCtrl.text) ?? 0,
-                        mobile: _cellphoneCtrl.text,
-                        description: _descriptionCtrl.text,
-                        images: [_imageServerPath],
-                      );
                       switchSetLoading();
-                      AdService().postAd(context, newAdPost).then((value) => value = switchSetLoading());
+                      var wait = Future.delayed(Duration(seconds: 5), ()
+                      {
+                        ProductAd newAdPost = ProductAd(
+                          title: _titleCtrl.text,
+                          price: num.tryParse(_priceCtrl.text) ?? 0,
+                          mobile: _cellphoneCtrl.text,
+                          description: _descriptionCtrl.text,
+                          images: [_imageServerPath],
+                        );
+
+                        AdService().postAd(context, newAdPost).then((value) =>
+                        value = switchSetLoading());
+                      });
                     }
                   },
                   child: Visibility(

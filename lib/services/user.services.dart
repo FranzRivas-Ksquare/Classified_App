@@ -62,7 +62,7 @@ class UserServices {
 
       if (respJson['status'] == true) {
         AlertManager().displaySnackbar(context, 'Update user successfully');
-        Navigator.pushReplacementNamed(context, '/settings');
+        Navigator.pop(context);
       }
 
       kDebugFunc(resp);

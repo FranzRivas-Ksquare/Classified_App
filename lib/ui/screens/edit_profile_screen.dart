@@ -140,20 +140,22 @@ class _EditProfileState extends State<EditProfile> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFF25723)),
                         onPressed: () {
-                          User updateUser = User(
-                            name: _nameCtrl.text,
-                            email: _mailCtrl.text,
-                            mobile: _cellphoneCtrl.text,
-                            image: _imageServerPath.isEmpty
-                                ? 'https://picsum.photos/200'
-                                : _imageServerPath,
-                          );
-
-                          kDebugFunc(updateUser);
-
                           switchSetLoading();
-                          UserServices().updateUserInfo(context, updateUser).then((value) => value = switchSetLoading());
-                          
+                          var wait = Future.delayed(Duration(seconds: 5), ()
+                          {
+                            User updateUser = User(
+                              name: _nameCtrl.text,
+                              email: _mailCtrl.text,
+                              mobile: _cellphoneCtrl.text,
+                              image: _imageServerPath.isEmpty
+                                  ? 'https://picsum.photos/200'
+                                  : _imageServerPath,
+                            );
+
+                            UserServices()
+                                .updateUserInfo(context, updateUser)
+                                .then((value) => value = switchSetLoading());
+                          });
                         },
                         child: Visibility(
                           visible: _isLoading,
